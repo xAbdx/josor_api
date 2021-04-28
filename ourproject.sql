@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 11:26 PM
+-- Generation Time: Apr 28, 2021 at 02:04 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -57,7 +57,9 @@ INSERT INTO `contact_us` (`id`, `email`) VALUES
 (67, 'abd@wis.com'),
 (68, 'dd@as.com'),
 (69, 'famawec319@ummoh.com'),
-(70, 'famawec319@ummoh.com');
+(70, 'famawec319@ummoh.com'),
+(71, 'dawnzabel@hotmail.com'),
+(72, 'dawnzabel@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,8 @@ CREATE TABLE `faq` (
 INSERT INTO `faq` (`FAQ_ID`, `Question`, `Answer`, `AddDate`) VALUES
 (1, 'Who we are?', 'Josor team', '2021-03-24'),
 (2, 'What is Josor?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
-(3, 'What is Josor2?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24');
+(3, 'What is Josor2?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
+(4, 'What is Josor3?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24');
 
 -- --------------------------------------------------------
 
@@ -226,7 +229,9 @@ CREATE TABLE `skills` (
 INSERT INTO `skills` (`id`, `category`, `name`) VALUES
 (1, 'Technology ', 'Technology '),
 (2, 'Engineering', 'Engineering'),
-(3, 'Business', 'Business');
+(3, 'Business', 'Business'),
+(41, '', 'test'),
+(42, '', 'test2');
 
 -- --------------------------------------------------------
 
@@ -261,7 +266,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) VALUES
 (1234567736, 'subhi', 'SAlmohtasib@ecslimited.com', '123', '1234556', 2),
-(1234567737, 'abd', 'abd@test.com', '123', '0599123123', 2);
+(1234567737, 'abd', 'abd@test.com', '123', '0599123123', 2),
+(1234567738, 'test', 'test@test.com', '123', '0599123123', 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +404,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `disabilities`
@@ -410,7 +416,7 @@ ALTER TABLE `disabilities`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `FAQ_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `FAQ_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `hire_me`
@@ -452,13 +458,13 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567738;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567739;
 
 --
 -- AUTO_INCREMENT for table `userskills`
@@ -485,35 +491,10 @@ ALTER TABLE `hire_me`
   ADD CONSTRAINT `FK_hireMe_skills` FOREIGN KEY (`skills`) REFERENCES `skills` (`id`);
 
 --
--- Constraints for table `jobapplication`
---
-ALTER TABLE `jobapplication`
-  ADD CONSTRAINT `providerId` FOREIGN KEY (`serviceProviderUserId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
-
---
 -- Constraints for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD CONSTRAINT `FK_Jobs_Skills` FOREIGN KEY (`Skill_ID`) REFERENCES `skills` (`id`);
-
---
--- Constraints for table `review`
---
-ALTER TABLE `review`
-  ADD CONSTRAINT `orderId` FOREIGN KEY (`ordered`) REFERENCES `jobapplication` (`id`);
-
---
--- Constraints for table `reviewsforserviceprovider`
---
-ALTER TABLE `reviewsforserviceprovider`
-  ADD CONSTRAINT `reviewsforserviceprovider_ibfk_1` FOREIGN KEY (`serviceProviderUserId`) REFERENCES `user` (`serviceProviderUserId`);
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `FK_User_UserType` FOREIGN KEY (`userTypeid`) REFERENCES `user_type` (`usertypeID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
