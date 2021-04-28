@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $params = (array) json_decode(file_get_contents('php://input'), TRUE);
     $username = $params["UserName"];
     $password = $params["Password"];
-    $userTypeid = $params["userTypeid"];
     $sql = "select * from users where name='$username' and password='$password' and userTypeid='1'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
