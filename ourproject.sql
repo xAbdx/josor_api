@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 02:04 PM
+-- Generation Time: May 23, 2021 at 05:03 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -59,7 +59,8 @@ INSERT INTO `contact_us` (`id`, `email`) VALUES
 (69, 'famawec319@ummoh.com'),
 (70, 'famawec319@ummoh.com'),
 (71, 'dawnzabel@hotmail.com'),
-(72, 'dawnzabel@hotmail.com');
+(72, 'dawnzabel@hotmail.com'),
+(73, 'sal@test.cpo');
 
 -- --------------------------------------------------------
 
@@ -89,9 +90,9 @@ INSERT INTO `disabilities` (`disabilityID`, `Name`, `AddDate`) VALUES
 --
 
 CREATE TABLE `faq` (
-  `FAQ_ID` int(11) NOT NULL,
-  `Question` varchar(1000) NOT NULL,
-  `Answer` varchar(2000) NOT NULL,
+  `id` int(11) NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `answer` varchar(2000) NOT NULL,
   `AddDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,8 +100,7 @@ CREATE TABLE `faq` (
 -- Dumping data for table `faq`
 --
 
-INSERT INTO `faq` (`FAQ_ID`, `Question`, `Answer`, `AddDate`) VALUES
-(1, 'Who we are?', 'Josor team', '2021-03-24'),
+INSERT INTO `faq` (`id`, `question`, `answer`, `AddDate`) VALUES
 (2, 'What is Josor?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
 (3, 'What is Josor2?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
 (4, 'What is Josor3?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24');
@@ -230,8 +230,7 @@ INSERT INTO `skills` (`id`, `category`, `name`) VALUES
 (1, 'Technology ', 'Technology '),
 (2, 'Engineering', 'Engineering'),
 (3, 'Business', 'Business'),
-(41, '', 'test'),
-(42, '', 'test2');
+(45, '', 'test123');
 
 -- --------------------------------------------------------
 
@@ -257,7 +256,7 @@ CREATE TABLE `users` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
-  `userTypeid` int(11) NOT NULL
+  `userTypeid` int(11) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -265,9 +264,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) VALUES
+(2, 'Subhi', 'salmohtasib@a.com', '123', '12345666', 2),
 (1234567736, 'subhi', 'SAlmohtasib@ecslimited.com', '123', '1234556', 2),
 (1234567737, 'abd', 'abd@test.com', '123', '0599123123', 2),
-(1234567738, 'test', 'test@test.com', '123', '0599123123', 1);
+(1234567738, 'test', 'test@test.com', '123', '0599123123', 1),
+(1234567741, 'test3', 'test3@abc.com', '123', '0599323123', 2),
+(1234567742, 'test4', 'test4@abc.com', '123', '0599423123', 2);
 
 -- --------------------------------------------------------
 
@@ -322,7 +324,7 @@ ALTER TABLE `disabilities`
 -- Indexes for table `faq`
 --
 ALTER TABLE `faq`
-  ADD PRIMARY KEY (`FAQ_ID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `hire_me`
@@ -404,7 +406,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `disabilities`
@@ -416,7 +418,7 @@ ALTER TABLE `disabilities`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `FAQ_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `hire_me`
@@ -458,13 +460,13 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567739;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567743;
 
 --
 -- AUTO_INCREMENT for table `userskills`
@@ -495,6 +497,12 @@ ALTER TABLE `hire_me`
 --
 ALTER TABLE `jobs`
   ADD CONSTRAINT `FK_Jobs_Skills` FOREIGN KEY (`Skill_ID`) REFERENCES `skills` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `FK_UserTypeId` FOREIGN KEY (`userTypeid`) REFERENCES `user_type` (`usertypeID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
