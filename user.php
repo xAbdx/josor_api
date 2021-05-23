@@ -34,7 +34,7 @@ if ($method == 'POST') {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 } elseif ($method == 'GET') {
-    $sql = "SELECT id,name,email,password,phone from users";
+    $sql = "SELECT id,name,email,password,phone,userTypeid from users";
     $result = mysqli_query($conn, $sql);
     $arr = array();
     if (mysqli_num_rows($result) > 0) {

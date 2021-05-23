@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $returnResponse = (object) [
                 "isAdmin" => false,
-                "errorMessage" => "Invalid user type"
+                "errorMessage" => "You are not allowed to access this page"
             ];
         }
     } else {
