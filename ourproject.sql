@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2021 at 05:03 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: May 25, 2021 at 09:10 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,7 +60,11 @@ INSERT INTO `contact_us` (`id`, `email`) VALUES
 (70, 'famawec319@ummoh.com'),
 (71, 'dawnzabel@hotmail.com'),
 (72, 'dawnzabel@hotmail.com'),
-(73, 'sal@test.cpo');
+(73, 'sal@test.cpo'),
+(74, 'sam@1223.com'),
+(75, ''),
+(76, ''),
+(77, 'sdaf@asdf.comads');
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,9 @@ CREATE TABLE `faq` (
 INSERT INTO `faq` (`id`, `question`, `answer`, `AddDate`) VALUES
 (2, 'What is Josor?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
 (3, 'What is Josor2?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
-(4, 'What is Josor3?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24');
+(4, 'What is Josor3?', 'It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout It is a long established fact that a reader will be distracted by the  a page when looking at its layout', '2021-03-24'),
+(13, 'test', 'test', '2021-05-23'),
+(16, 'delete me', 'delete me', '2021-05-24');
 
 -- --------------------------------------------------------
 
@@ -230,7 +236,8 @@ INSERT INTO `skills` (`id`, `category`, `name`) VALUES
 (1, 'Technology ', 'Technology '),
 (2, 'Engineering', 'Engineering'),
 (3, 'Business', 'Business'),
-(45, '', 'test123');
+(53, '', 'test'),
+(56, '', 'delete me');
 
 -- --------------------------------------------------------
 
@@ -264,12 +271,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) VALUES
-(2, 'Subhi', 'salmohtasib@a.com', '123', '12345666', 2),
-(1234567736, 'subhi', 'SAlmohtasib@ecslimited.com', '123', '1234556', 2),
-(1234567737, 'abd', 'abd@test.com', '123', '0599123123', 2),
-(1234567738, 'test', 'test@test.com', '123', '0599123123', 1),
-(1234567741, 'test3', 'test3@abc.com', '123', '0599323123', 2),
-(1234567742, 'test4', 'test4@abc.com', '123', '0599423123', 2);
+(1, 'test', 'test@test.com', '123', '599112312', 1),
+(2, 'Subhi', 'salmohtasib@g.com', '123', '599001122', 2),
+(3, 'subhi', 'SAlmohtasib@ecslimited.com', '123', '123123', 2),
+(4, 'abd', 'abd@gmail.com', '123', '599987654', 2),
+(5, 'aaa', 'aaa@asa.com', '123', '123123', 2),
+(6, 'deleteMe', 'deleteme@s.com', '123', '123947', 2),
+(7, 'deleteMe', 'deleteMe@asdf.com', '123', '123984871', 2);
 
 -- --------------------------------------------------------
 
@@ -406,7 +414,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `disabilities`
@@ -418,7 +426,7 @@ ALTER TABLE `disabilities`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `hire_me`
@@ -460,13 +468,13 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567743;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `userskills`

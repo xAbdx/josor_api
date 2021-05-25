@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Methods: GET, POST,DELETE');
+header('Access-Control-Allow-Methods: GET, POST,DELETE,PUT');
 
 $servername = "localhost";
 $username = "root";
@@ -29,10 +29,19 @@ if ($method == 'POST') {
     // '$userType'
 
     if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
+        $returnResponse = (object) [
+            "isValid" => true,
+            "errorMessage" => ""
+        ];
+        echo json_encode($returnResponse);
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $returnResponse = (object) [
+            "isValid" => false,
+            "errorMessage" => "error happend"
+        ];
     }
+    header('Content-Type: application/json');
 } elseif ($method == 'GET') {
     $sql = "SELECT id,name,email,password,phone,userTypeid from users";
     $result = mysqli_query($conn, $sql);
@@ -56,17 +65,21 @@ if ($method == 'POST') {
     $name = $post_vars['name'];
     $phone = $post_vars['phone'];
     $email = $post_vars['email'];
-    $sql = "update `users` set `name`= '$name', `phone`= '$phone',`email`= '$email' where `id`='$userid';";
+    $userTypeid = $post_vars['userTypeid'];
+    $sql = "update `users` set `name`= '$name', `phone`= '$phone',`email`= '$email', `userTypeid`= '$userTypeid' where `id`='$userid';";
 
     if (mysqli_query($conn, $sql)) {
-
         $returnResponse = (object) [
             "isValid" => true,
-            "errorMessage" => ""
+            "errorMessage" => "updated successfully"
         ];
         echo json_encode($returnResponse);
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $returnResponse = (object) [
+            "isValid" => false,
+            "errorMessage" => "error happend"
+        ];
     }
     header('Content-Type: application/json');
 } elseif ($method == 'DELETE') {
