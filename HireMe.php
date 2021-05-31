@@ -52,6 +52,21 @@ if ($method == 'POST') {
     // echo isset($_FILES['imageFile']);
     // echo $_FILES["imageFile"]["name"];
 
+} elseif ($method == 'GET') {
+    $sql = "SELECT * from hire_me";
+    $result = mysqli_query($conn, $sql);
+    $arr = array();
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($arr, $row);
+            // echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["password"]. "<br>". $row["email"]. "<br>";
+        }
+    } else {
+        echo "0 results";
+    }
+    header('Content-Type: application/json');
+    echo json_encode($arr);
 } else {
     echo 'unknown action';
 }

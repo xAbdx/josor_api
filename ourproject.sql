@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2021 at 03:13 PM
+-- Generation Time: Jun 01, 2021 at 01:16 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -43,17 +43,7 @@ INSERT INTO `contact_us` (`id`, `email`) VALUES
 (4, 'abd4@abc.com'),
 (5, 'abd5@abc.com'),
 (55, 'abd3@abc.com'),
-(56, ''),
-(57, ''),
-(58, ''),
-(59, ''),
-(60, ''),
-(61, ''),
-(62, 'abd'),
 (63, 'abd@gmail.com'),
-(64, ''),
-(65, ''),
-(66, 'dads'),
 (67, 'abd@wis.com'),
 (68, 'dd@as.com'),
 (69, 'famawec319@ummoh.com'),
@@ -130,7 +120,9 @@ CREATE TABLE `hire_me` (
 
 INSERT INTO `hire_me` (`id`, `email`, `skills`, `kind_of_disability`, `imagePath`) VALUES
 (11, 'sam@1223.com', 2, 3, 'uploads/834733-mathilde-langevin-joaaec-jwf0-unsplash.jpg'),
-(12, 'asdfasfd@ppu.edu.ps', 2, 3, 'uploads/141361-zoltan-tasi-orp3rd94nny-unsplash.jpg');
+(12, 'asdfasfd@ppu.edu.ps', 2, 3, 'uploads/141361-zoltan-tasi-orp3rd94nny-unsplash.jpg'),
+(13, 'oroob@m.com', 2, 1, 'uploads/899340-شسيب.jpg'),
+(14, 'sam@1223.com', 3, 4, 'uploads/1304-الاشهر-الهجرية.jpg');
 
 -- --------------------------------------------------------
 
@@ -169,7 +161,8 @@ INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price
 (3, 'Web Developer', 'Creating new websites ', 1, '1200'),
 (4, 'Civil Engineer', 'Fix buildings ', 2, '10'),
 (5, 'Mobile Developer', 'Creating new Mobile applications', 1, '1200'),
-(6, 'tests', 'tests', 46, '12312');
+(6, 'tests', 'tests', 46, '12312'),
+(7, 'Design', 'Design', 1, '50');
 
 -- --------------------------------------------------------
 
@@ -239,8 +232,10 @@ INSERT INTO `skills` (`id`, `category`, `name`) VALUES
 (1, 'Technology ', 'Technology '),
 (2, 'Engineering', 'Engineering'),
 (3, 'Business', 'Business'),
-(45, '', 'test123'),
-(46, '', 'test');
+(46, '', 'test'),
+(47, '', 'Agriculture'),
+(49, '', 'Mathematics'),
+(51, '', 'Data scientist');
 
 -- --------------------------------------------------------
 
@@ -280,7 +275,10 @@ INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) V
 (1234567741, 'test3', 'test3@abc.com', '123', '0599323123', 2),
 (1234567755, 'test22', 'tes22t@gmail.com', '123123123', '05999999993231', 2),
 (1234567756, 'asfd', 'asdf@sdaf.comds', '123123123', '12312312312312', 2),
-(1234567757, 'test121212', 'test12122@gmial.com', '1.1111111111111E+26', '1.111111111111', 2);
+(1234567757, 'test121212', 'test12122@gmial.com', '1.1111111111111E+26', '1.111111111111', 2),
+(1234567758, 'basma', 'basma@test.com', '123123123', '05912937221', 2),
+(1234567759, 'oroob', 'oroob@m.com', '123123123', '123123123123', 3),
+(1234567760, 'AbdxSalameh', 'abd1@g1mail.com', '123123123', '05992999999222', 2);
 
 -- --------------------------------------------------------
 
@@ -293,6 +291,13 @@ CREATE TABLE `userskills` (
   `user` int(11) NOT NULL,
   `skill` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `userskills`
+--
+
+INSERT INTO `userskills` (`id`, `user`, `skill`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -434,7 +439,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `hire_me`
 --
 ALTER TABLE `hire_me`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `jobapplication`
@@ -446,7 +451,7 @@ ALTER TABLE `jobapplication`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -470,19 +475,19 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567758;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567761;
 
 --
 -- AUTO_INCREMENT for table `userskills`
 --
 ALTER TABLE `userskills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_type`
