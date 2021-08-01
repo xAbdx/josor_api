@@ -49,7 +49,7 @@ if ($method == 'POST') {
             Job_description as description,
             price as price,
             '01/01/2021' as date 
-            from jobs where skill_id ='$skill_id'";
+            from jobs where job_id ='$skill_id'";
     //where skill_id ='$skill_id' if you want to show all jobs delete this line
     $result = mysqli_query($conn, $sql);
     $arr = array();
@@ -59,90 +59,12 @@ if ($method == 'POST') {
             array_push($arr, $row);
             // echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["password"]. "<br>". $row["email"]. "<br>";
         }
-    } else {
-        json_encode($result);
     }
+    json_encode($arr);
+
     header('Content-Type: application/json');
     echo json_encode($arr);
 } else {
     echo 'unknown action';
 }
 mysqli_close($conn);
-
-
-
-// header("Access-Control-Allow-Origin: *");
-// // $servername = "localhost:3308";
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "ourproject";
-// // Create connection
-// $conn = mysqli_connect($servername, $username, $password, $dbname);
-// // Check connection
-// if (!$conn) {
-//     die("Connection failed: " . mysqli_connect_error());
-// }
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $params = (array) json_decode(file_get_contents('php://input'), TRUE);
-
-//     $id = $params["id"];
-//     $title = $params["title"];
-//     $description = $params["description"];
-//     $typeOfService = $params["typeOfService"];
-//     $price = $params["price"];
-
-//     $sql = "INSERT INTO `jobs` (`id`, `title`, `description`, `typeOfService`, `price`) VALUES ('$id', '$title', '$description', '$typeOfService', '$price');";
-
-//     if (mysqli_query($conn, $sql)) {
-//         echo "New record created successfully";
-//     } else {
-//         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-//     }
-// } else {
-//     $sql = "SELECT * from jobs";
-//     $result = mysqli_query($conn, $sql);
-//     $arr = array();
-//     if (mysqli_num_rows($result) > 0) {
-//         // output data of each row
-//         while ($row = mysqli_fetch_assoc($result)) {
-//             array_push($arr, $row);
-//             // echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["password"]. "<br>". $row["email"]. "<br>";
-//         }
-//     } else {
-//         echo "0 results";
-//     }
-//     header('Content-Type: application/json');
-//     echo json_encode($arr);
-// }
-// mysqli_close($conn);
-
-
-
-
-// header("Access-Control-Allow-Origin: *");
-// $servername = "localhost:3308";
-// $username = "root";
-// $password = "root";
-// $dbname = "ourproject";
-// // Create connection
-// $conn = mysqli_connect($servername, $username, $password, $dbname);
-// // Check connection
-// if (!$conn) {
-//     die("Connection failed: " . mysqli_connect_error());
-// }
-// $sql = "SELECT * from jobs";
-// $result = mysqli_query($conn, $sql);
-// $arr = array();
-// if (mysqli_num_rows($result) > 0) {
-//     // output data of each row
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         array_push($arr, $row);
-//         // echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["password"]. "<br>". $row["email"]. "<br>";
-//     }
-// } else {
-//     echo "0 results";
-// }
-// header('Content-Type: application/json');
-// echo json_encode($arr);
-// mysqli_close($conn);
