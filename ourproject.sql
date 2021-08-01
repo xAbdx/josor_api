@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 01:16 AM
+-- Generation Time: Aug 01, 2021 at 12:24 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -122,7 +122,9 @@ INSERT INTO `hire_me` (`id`, `email`, `skills`, `kind_of_disability`, `imagePath
 (11, 'sam@1223.com', 2, 3, 'uploads/834733-mathilde-langevin-joaaec-jwf0-unsplash.jpg'),
 (12, 'asdfasfd@ppu.edu.ps', 2, 3, 'uploads/141361-zoltan-tasi-orp3rd94nny-unsplash.jpg'),
 (13, 'oroob@m.com', 2, 1, 'uploads/899340-شسيب.jpg'),
-(14, 'sam@1223.com', 3, 4, 'uploads/1304-الاشهر-الهجرية.jpg');
+(14, 'sam@1223.com', 3, 4, 'uploads/1304-الاشهر-الهجرية.jpg'),
+(15, 'uroob@gmail.com', 1, 2, 'uploads/354083-الاشهر-الهجرية.jpg'),
+(16, 'abdasfd@gmail.com', 46, 3, 'uploads/636577-الاشهر-الهجرية.jpg');
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,7 @@ INSERT INTO `hire_me` (`id`, `email`, `skills`, `kind_of_disability`, `imagePath
 CREATE TABLE `jobapplication` (
   `id` int(11) NOT NULL,
   `status` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `userId` int(11) NOT NULL,
+  `clientId` int(11) NOT NULL,
   `serviceProviderUserId` int(11) NOT NULL,
   `deliveryData` date NOT NULL,
   `price` int(11) NOT NULL
@@ -158,11 +160,14 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price`) VALUES
-(3, 'Web Developer', 'Creating new websites ', 1, '1200'),
-(4, 'Civil Engineer', 'Fix buildings ', 2, '10'),
-(5, 'Mobile Developer', 'Creating new Mobile applications', 1, '1200'),
-(6, 'tests', 'tests', 46, '12312'),
-(7, 'Design', 'Design', 1, '50');
+(1, 'Civil Engineer', 'Fix buildings ', 1, '200'),
+(3, 'Web Developer', 'Creating new websites ', 1, '150'),
+(4, 'test', 'test', 6, '3'),
+(5, ' Mobile Developer  ', 'Creating new Mobile applications', 1, '120'),
+(8, 'ds', 'sda', 6, '22'),
+(9, 'tests', 'testset', 5, '23'),
+(10, 'sfdadsfafa', 'sdfafdsafsdfads', 5, '2332'),
+(11, 'adsfsdf', 'sdfafdsafds', 1, '2332');
 
 -- --------------------------------------------------------
 
@@ -229,13 +234,12 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`id`, `category`, `name`) VALUES
-(1, 'Technology ', 'Technology '),
-(2, 'Engineering', 'Engineering'),
-(3, 'Business', 'Business'),
-(46, '', 'test'),
-(47, '', 'Agriculture'),
-(49, '', 'Mathematics'),
-(51, '', 'Data scientist');
+(1, '', 'Technology'),
+(2, '', 'Engineering'),
+(3, '', 'Business'),
+(4, '', 'Agriculture'),
+(5, '', 'Data scientist'),
+(6, '', 'Mathematics');
 
 -- --------------------------------------------------------
 
@@ -278,7 +282,9 @@ INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) V
 (1234567757, 'test121212', 'test12122@gmial.com', '1.1111111111111E+26', '1.111111111111', 2),
 (1234567758, 'basma', 'basma@test.com', '123123123', '05912937221', 2),
 (1234567759, 'oroob', 'oroob@m.com', '123123123', '123123123123', 3),
-(1234567760, 'AbdxSalameh', 'abd1@g1mail.com', '123123123', '05992999999222', 2);
+(1234567760, 'AbdxSalameh', 'abd1@g1mail.com', '123123123', '05992999999222', 2),
+(1234567761, 'basma', 'basmat@test.com', '123456789', '0599999999', 2),
+(1234567762, 'uroob', 'uroob@gmail.com', '12345678', '0599436565', 3);
 
 -- --------------------------------------------------------
 
@@ -356,7 +362,7 @@ ALTER TABLE `hire_me`
 ALTER TABLE `jobapplication`
   ADD PRIMARY KEY (`id`),
   ADD KEY `providerId` (`serviceProviderUserId`),
-  ADD KEY `userId` (`userId`);
+  ADD KEY `userId` (`clientId`);
 
 --
 -- Indexes for table `jobs`
@@ -439,7 +445,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `hire_me`
 --
 ALTER TABLE `hire_me`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `jobapplication`
@@ -451,7 +457,7 @@ ALTER TABLE `jobapplication`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -475,13 +481,13 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567761;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567763;
 
 --
 -- AUTO_INCREMENT for table `userskills`
@@ -503,8 +509,7 @@ ALTER TABLE `user_type`
 -- Constraints for table `hire_me`
 --
 ALTER TABLE `hire_me`
-  ADD CONSTRAINT `FK_hireMe_disability` FOREIGN KEY (`kind_of_disability`) REFERENCES `disabilities` (`disabilityID`),
-  ADD CONSTRAINT `FK_hireMe_skills` FOREIGN KEY (`skills`) REFERENCES `skills` (`id`);
+  ADD CONSTRAINT `FK_hireMe_disability` FOREIGN KEY (`kind_of_disability`) REFERENCES `disabilities` (`disabilityID`);
 
 --
 -- Constraints for table `jobs`
