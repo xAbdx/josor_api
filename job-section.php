@@ -12,7 +12,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-// Check request method
+// Check request methodd
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method == 'POST') {
     $params = (array) json_decode(file_get_contents('php://input'), TRUE);

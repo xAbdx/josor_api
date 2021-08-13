@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2021 at 11:30 PM
+-- Generation Time: Aug 13, 2021 at 01:56 PM
 -- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -168,10 +168,7 @@ CREATE TABLE `jobs` (
 INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price`, `userID`) VALUES
 (15, 'Software Engineer ', 'I need a very good developer to develop my website along with a mobile application. The job will start on September 1st 2021. Please contact me ASAP ', 1, '1196', 1234567736),
 (16, 'Math Teacher ', 'TEST TEST TEST ', 6, '200', 1234567736),
-(17, 'Flutter Developer', 'I need a flutter developer ', 1, '1197', 1234567736),
-(18, 'test', 'test', 6, '1200', 0),
-(19, 'test', 'test', 4, '12', 0),
-(20, 'test2', 'test2', 4, '123', 0);
+(17, 'Flutter Developer', 'I need a flutter developer ', 1, '1197', 1234567736);
 
 -- --------------------------------------------------------
 
@@ -462,7 +459,7 @@ ALTER TABLE `jobapplication`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `locations`
