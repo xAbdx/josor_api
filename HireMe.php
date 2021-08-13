@@ -35,8 +35,9 @@ if ($method == 'POST') {
         $email = $_POST['email'];
         $kindOfDisability = $_POST['kindOfDisability'];
         $skill = $_POST['skill'];
+        $userID = $_POST['userID'];
 
-        $sql = "INSERT INTO `hire_me` (`id`, `email`,`skills`, `kind_of_disability`, `imagePath`) VALUES (NULL, '$email', '$skill', '$kindOfDisability', '$upload_name');";
+        $sql = "INSERT INTO `hire_me` (`id`, `email`,`skills`, `kind_of_disability`, `imagePath`,`userID`) VALUES (NULL, '$email', '$skill', '$kindOfDisability', '$upload_name','$userID');";
         // '$userType'
 
         if (mysqli_query($conn, $sql)) {

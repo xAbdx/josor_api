@@ -1,7 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Methods: GET, POST,DELETE');
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,25 +12,29 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $params = (array) json_decode(file_get_contents('php://input'), TRUE);
+};
+// Check request method
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == 'POST') {
 
-    $id = $params["id"];
-    $status = $params["status"];
-    $clientId = $params["clientId"];
-    $serviceProviderId = $params["serviceProviderId"];
-    $deliveryDate = $params["deliveryDate"];
-    $price = $params["price"];
+        $jobSkill = $_POST['jobType'];
+        $jobDescription = $_POST['jobDescription'];
+        $jobWage = $_POST['jobWage'];
+        $jobTitle = $_POST['jobTitle'];
+        $jobProviderUserID = $_POST['userID'];
 
-    $sql = "INSERT INTO `jobapplication` (`id`, `status`, `clientId`, `serviceProviderId`, `deliveryDate` , `price`) VALUES ('$id', '$status', '$clientId', '$serviceProviderId', '$deliveryDate', '$price');";
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-} else {
-    $sql = "SELECT * from jobapplication";
+        $sql = "INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price`,`userID`) VALUES (NULL, '$jobTitle', '$jobDescription', '$jobSkill', '$jobWage','$jobProviderUserID');";
+      
+
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    
+
+} elseif ($method == 'GET') {
+    $sql = "SELECT * from hire_me";
     $result = mysqli_query($conn, $sql);
     $arr = array();
     if (mysqli_num_rows($result) > 0) {
@@ -43,5 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     header('Content-Type: application/json');
     echo json_encode($arr);
+} else {
+    echo 'unknown action';
 }
 mysqli_close($conn);

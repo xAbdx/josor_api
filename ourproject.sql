@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2021 at 12:24 PM
+-- Generation Time: Aug 13, 2021 at 11:30 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -111,20 +111,16 @@ CREATE TABLE `hire_me` (
   `email` varchar(100) NOT NULL,
   `skills` int(11) NOT NULL,
   `kind_of_disability` int(11) NOT NULL,
-  `imagePath` text NOT NULL
+  `imagePath` text NOT NULL,
+  `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hire_me`
 --
 
-INSERT INTO `hire_me` (`id`, `email`, `skills`, `kind_of_disability`, `imagePath`) VALUES
-(11, 'sam@1223.com', 2, 3, 'uploads/834733-mathilde-langevin-joaaec-jwf0-unsplash.jpg'),
-(12, 'asdfasfd@ppu.edu.ps', 2, 3, 'uploads/141361-zoltan-tasi-orp3rd94nny-unsplash.jpg'),
-(13, 'oroob@m.com', 2, 1, 'uploads/899340-شسيب.jpg'),
-(14, 'sam@1223.com', 3, 4, 'uploads/1304-الاشهر-الهجرية.jpg'),
-(15, 'uroob@gmail.com', 1, 2, 'uploads/354083-الاشهر-الهجرية.jpg'),
-(16, 'abdasfd@gmail.com', 46, 3, 'uploads/636577-الاشهر-الهجرية.jpg');
+INSERT INTO `hire_me` (`id`, `email`, `skills`, `kind_of_disability`, `imagePath`, `userID`) VALUES
+(18, 'xxxx@xxx.com', 3, 2, 'uploads/537506-986430-????????????-??????????????.jpg', 1234567736);
 
 -- --------------------------------------------------------
 
@@ -136,10 +132,19 @@ CREATE TABLE `jobapplication` (
   `id` int(11) NOT NULL,
   `status` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `clientId` int(11) NOT NULL,
-  `serviceProviderUserId` int(11) NOT NULL,
-  `deliveryData` date NOT NULL,
+  `serviceProviderId` int(11) NOT NULL,
+  `deliveryDate` date NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `jobapplication`
+--
+
+INSERT INTO `jobapplication` (`id`, `status`, `clientId`, `serviceProviderId`, `deliveryDate`, `price`) VALUES
+(2, 'on', 0, 0, '0000-00-00', 0),
+(20, 'on', 0, 1234567738, '2021-08-13', 1196),
+(21, 'on', 0, 1234567737, '2021-07-31', 123);
 
 -- --------------------------------------------------------
 
@@ -152,22 +157,21 @@ CREATE TABLE `jobs` (
   `Job_Title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Job_description` varchar(800) COLLATE utf8_unicode_ci NOT NULL,
   `Skill_ID` int(11) NOT NULL,
-  `price` decimal(11,0) NOT NULL
+  `price` decimal(11,0) NOT NULL,
+  `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price`) VALUES
-(1, 'Civil Engineer', 'Fix buildings ', 1, '200'),
-(3, 'Web Developer', 'Creating new websites ', 1, '150'),
-(4, 'test', 'test', 6, '3'),
-(5, ' Mobile Developer  ', 'Creating new Mobile applications', 1, '120'),
-(8, 'ds', 'sda', 6, '22'),
-(9, 'tests', 'testset', 5, '23'),
-(10, 'sfdadsfafa', 'sdfafdsafsdfads', 5, '2332'),
-(11, 'adsfsdf', 'sdfafdsafds', 1, '2332');
+INSERT INTO `jobs` (`Job_ID`, `Job_Title`, `Job_description`, `Skill_ID`, `price`, `userID`) VALUES
+(15, 'Software Engineer ', 'I need a very good developer to develop my website along with a mobile application. The job will start on September 1st 2021. Please contact me ASAP ', 1, '1196', 1234567736),
+(16, 'Math Teacher ', 'TEST TEST TEST ', 6, '200', 1234567736),
+(17, 'Flutter Developer', 'I need a flutter developer ', 1, '1197', 1234567736),
+(18, 'test', 'test', 6, '1200', 0),
+(19, 'test', 'test', 4, '12', 0),
+(20, 'test2', 'test2', 4, '123', 0);
 
 -- --------------------------------------------------------
 
@@ -284,7 +288,8 @@ INSERT INTO `users` (`id`, `Name`, `email`, `password`, `phone`, `userTypeid`) V
 (1234567759, 'oroob', 'oroob@m.com', '123123123', '123123123123', 3),
 (1234567760, 'AbdxSalameh', 'abd1@g1mail.com', '123123123', '05992999999222', 2),
 (1234567761, 'basma', 'basmat@test.com', '123456789', '0599999999', 2),
-(1234567762, 'uroob', 'uroob@gmail.com', '12345678', '0599436565', 3);
+(1234567762, 'uroob', 'uroob@gmail.com', '12345678', '0599436565', 3),
+(1234567763, 'my', 'my@my.com', '123', '123', 3);
 
 -- --------------------------------------------------------
 
@@ -361,7 +366,7 @@ ALTER TABLE `hire_me`
 --
 ALTER TABLE `jobapplication`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `providerId` (`serviceProviderUserId`),
+  ADD KEY `providerId` (`serviceProviderId`),
   ADD KEY `userId` (`clientId`);
 
 --
@@ -445,19 +450,19 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `hire_me`
 --
 ALTER TABLE `hire_me`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `jobapplication`
 --
 ALTER TABLE `jobapplication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Job_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -481,13 +486,13 @@ ALTER TABLE `reviewsforserviceprovider`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567763;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567764;
 
 --
 -- AUTO_INCREMENT for table `userskills`
