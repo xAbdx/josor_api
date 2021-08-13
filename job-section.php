@@ -49,7 +49,7 @@ if ($method == 'POST') {
             Job_description as description,
             price as price,
             '01/01/2021' as date 
-            from jobs where skill_id ='$skill_id'";
+            from jobs where job_id ='$skill_id'";
     //where skill_id ='$skill_id' if you want to show all jobs delete this line
     $result = mysqli_query($conn, $sql);
     $arr = array();
